@@ -1,133 +1,168 @@
-Assignment2
-group：Qingyu Cheng & Yunhong Huang
+# Assignment 2 – Load Testing Client
+
+**Group:** Qingyu Cheng & Yunhong Huang  
+
+This project implements a **Java-based load testing system** for evaluating a Spring Boot server under high concurrency. It includes single-threaded and multi-threaded clients, performance analysis, and visualization.
+
+---
+
+## 📂 Project Structure
+
+```bash
 load-testing-client/
 ├── src/main/java/edu/neu/cs6650/client/
-│ ├── SingleClient.java
-│ ├── MultiThreadClient1.java
-│ ├── MultiThreadClient2.java
+│   ├── SingleClient.java
+│   ├── MultiThreadClient1.java
+│   └── MultiThreadClient2.java
 │
 ├── src/main/java/edu/neu/cs6650/server/
-│ ├── ServerApp.java
-│ └── ProductController.java
+│   ├── ServerApp.java
+│   └── ProductController.java
 │
 ├── client_results/
-│ ├── client-part2-results.csv
-│ ├── throughput_over_time.csv
-│ ├── throughput_plot.png
+│   ├── client-part2-results.csv
+│   ├── throughput_over_time.csv
+│   └── throughput_plot.png
 │
 ├── analyze_results.py
 ├── plot_throughput.py
 ├── Dockerfile
 └── README.md
-
-
-To satisfy the assignment requirement of “three separate client folders”,  
-this repo additionally includes:
-
-
-clients/
-├── single/
-│ └── SingleClient.java
-├── part1/
-│ └── MultiThreadClient1.java
-└── part2/
-├── MultiThreadClient2.java
-└── client-part2-results.csv
-
-
-These are copies of the real runnable code from `/src/main/java/...`.  
-The runnable version remains inside IntelliJ under `src/main/java`.
+```
 
 ---
 
-## 📌 How to Run
+## 📂 Additional Required Structure (Assignment Requirement)
+
+```bash
+clients/
+├── single/
+│   └── SingleClient.java
+├── part1/
+│   └── MultiThreadClient1.java
+└── part2/
+    ├── MultiThreadClient2.java
+    └── client-part2-results.csv
+```
+
+These are copies of the runnable code located in:
+
+```bash
+src/main/java/edu/neu/cs6650/client/
+```
+
+---
+
+## 🚀 How to Run
 
 ### 1️⃣ Single-thread Client
 
+```bash
 cd src/main/java
 javac edu/neu/cs6650/client/SingleClient.java
 java edu.neu.cs6650.client.SingleClient
+```
 
+---
 
 ### 2️⃣ Multi-thread Client (Part 1)
 
+```bash
 javac edu/neu/cs6650/client/MultiThreadClient1.java
 java edu.neu.cs6650.client.MultiThreadClient1
+```
 
+---
 
 ### 3️⃣ Multi-thread Client (Part 2)
-Generates CSV + latency statistics + throughput plot.
 
+Generates latency statistics and throughput analysis.
 
+```bash
 javac edu/neu/cs6650/client/MultiThreadClient2.java
 java edu.neu.cs6650.client.MultiThreadClient2
-
+```
 
 ---
 
-## 📌 Server (Spring Boot)
+## 🖥️ Server (Spring Boot)
 
-Runs locally with:
+Start the server:
 
-
+```bash
 mvn spring-boot:run
-
-
-POST endpoint:
-
-
-POST http://localhost:8080/products
-
-
-Returns:
-
-
-201 Created
-
-
-(201 is used because a new product resource is created on the server.)
+```
 
 ---
 
-## 📌 Python Scripts (Optional for plots)
+### API Endpoint
 
+```bash
+POST http://localhost:8080/products
+```
 
+Response:
+
+```bash
+201 Created
+```
+
+**Explanation:**  
+HTTP `201` is returned because a new product resource is created on the server.
+
+---
+
+## 📊 Python Analysis (Optional)
+
+```bash
 python3 analyze_results.py
 python3 plot_throughput.py
+```
 
+---
 
-Produces:
+### Output Files
 
 - `throughput_over_time.csv`
 - `throughput_plot.png`
 
 ---
 
-## 📌 Required Output (included in /client_results)
+## 📈 Results (Included in /client_results)
 
-- Single-thread throughput screenshot
-- Part 1 throughput & wall time
-- Part 2 mean/median/p99/min/max
-- Part 2 throughput-over-time plot
+- Single-thread throughput  
+- Part 1 throughput and wall time  
+- Part 2 latency statistics (mean / median / p99 / min / max)  
+- Throughput-over-time visualization  
 
 ---
 
-## ✔ Rubric Match Checklist
+## ✅ Rubric Checklist
 
 | Requirement | Status |
 |------------|--------|
 | Khoury Git repo | ✔ Included |
-| README instructions | ✔ Yes |
-| All Java, Docker, Spring files | ✔ Included |
-| Clients in 3 folders | ✔ `clients/single`, `clients/part1`, `clients/part2` |
-| Description of design | ✔ In PDF |
-| Why server returns 201 | ✔ Included above |
-| Single-thread performance | ✔ Output included |
-| Client Part 1 scaling | ✔ Achieved |
-| Client Part 2 statistics | ✔ CSV + mean/median/p99 |
-| Throughput over time plot | ✔ Included |
+| README instructions | ✔ Complete |
+| Java + Docker + Spring files | ✔ Included |
+| Clients in 3 folders | ✔ Implemented |
+| Design description | ✔ Provided (PDF) |
+| 201 response explanation | ✔ Included |
+| Single-thread performance | ✔ Included |
+| Multi-thread scaling (Part 1) | ✔ Achieved |
+| Statistical metrics (Part 2) | ✔ CSV generated |
+| Throughput visualization | ✔ Included |
 
 ---
 
-If you have any questions, feel free to contact me.  
-Thank you!  
+## 📌 Notes
+
+- This project is designed for **performance testing and learning purposes**  
+- Focuses on **concurrency, throughput, and latency analysis**  
+- Demonstrates scaling behavior from single-thread to multi-thread environments  
+
+---
+
+## 📬 Contact
+
+If you have any questions, feel free to reach out.  
+Thank you!
